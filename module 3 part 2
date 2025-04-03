@@ -1,0 +1,313 @@
+91.#How to draw a square and hexagon using turtle module in Python.
+
+from turtle import Turtle
+def drawsquare(t,length):
+    for count in range(4):
+        t.forward(length)
+        t.left(90)
+    t.penup()
+    t.goto(150, 0)  
+    t.pendown()
+
+def hexagon(t,length):
+    for count in range(6):
+        t.forward(length)
+        t.left(60)
+
+t=Turtle()
+drawsquare(t,30)
+hexagon(t,30)
+
+
+
+
+
+
+
+2.#How to draw a square and hexagon using turtle module in Python.
+
+
+from turtle import Turtle
+def square(t,length):
+    for count in range(4):
+        t.forward(length)
+        t.left(90)
+
+def hexagon(t,length):
+    for count in range(6):
+        t.forward(length)
+        t.left(60)
+def radial(t,n,length,shape):
+    for i in range(n):
+        shape(t,length)
+        t.left(360/n)
+t=Turtle()
+radial(t,10,30,square)
+radial(t,10,30,hexagon)
+
+
+
+
+
+3.#Write a Python program to draw a hexagon using turtle graphics.
+
+from turtle import Turtle
+def hexagon(t,length):
+    for count in range(6):
+        t.forward(length)
+        t.left(60)
+t=Turtle()
+hexagon(t,30)
+#Write a python function to draw a square using turtle graphics
+from turtle import Turtle
+def drawsquare(t,length):
+    for count in range(4):
+        t.forward(length)
+        t.left(90)
+t=Turtle()
+drawsquare(t,30)
+
+
+
+
+
+
+
+4.#Write a Python program to draw a hexagon and to fill it with red colour.
+
+from turtle import Turtle
+
+t = Turtle()
+t.color("red")  
+t.begin_fill()
+
+for _ in range(6):
+    t.forward(100)  
+    t.right(60)     
+
+t.end_fill()  
+
+
+
+
+
+5.#How to draw a star shape using turtle in Python.
+from turtle import Turtle
+
+t = Turtle()
+for i in range(5):
+    t.forward(150)  
+    t.right(144) 
+
+
+
+
+
+"""Q.Design a Python GUI program that takes user input for the length and width of a  (8) 
+rectangle, and when a button is pressed, calculates and displays the area of the  rectangle. 
+"""
+from breezypythongui import EasyFrame
+
+class RectangleAreaCalculator(EasyFrame):
+    def __init__(self):
+        EasyFrame.__init__(self, title="Rectangle Area Calculator")
+
+        self.addLabel(text="Length:", row=0, column=0)
+        self.lengthField = self.addFloatField(value=0.0, row=0, column=1)
+
+        self.addLabel(text="Width:", row=1, column=0)
+        self.widthField = self.addFloatField(value=0.0, row=1, column=1)
+
+        self.addButton(text="Calculate Area", row=2, column=0, columnspan=2, command=self.calculateArea)
+
+        self.resultLabel = self.addLabel(text="Area: ", row=3, column=0, columnspan=2)
+
+    def calculateArea(self):
+        length = self.lengthField.getNumber()
+        width = self.widthField.getNumber()
+
+        if length <= 0 or width <= 0:
+            self.messageBox(title="Error", message="Please enter positive values for length and width.")
+        else:
+            area = length * width
+            self.resultLabel["text"] = f"Area: {area:.2f}"  # Display result with two decimal places
+
+if __name__ == "__main__":
+    RectangleAreaCalculator().mainloop()
+"""Q.Write Python GUI program to input two strings and output a concatenated string 
+when a button is pressed. 
+"""
+from breezypythongui import EasyFrame
+
+class StringConcatenationApp(EasyFrame):
+    def __init__(self):
+        EasyFrame.__init__(self, title="String Concatenation")
+
+        self.addLabel(text="Enter First String:", row=0, column=0)
+        self.input1 = self.addTextField(text="", row=0, column=1)
+
+        self.addLabel(text="Enter Second String:", row=1, column=0)
+        self.input2 = self.addTextField(text="", row=1, column=1)
+
+        self.addButton(text="Concatenate", row=2, column=0, columnspan=2, command=self.concatenateStrings)
+
+        self.addLabel(text="Result:", row=3, column=0)
+        self.outputField = self.addTextField(text="", row=3, column=1, state="readonly")
+
+    def concatenateStrings(self):
+        str1 = self.input1.getText()
+        str2 = self.input2.getText()
+        result = str1 + str2  
+        self.outputField.setText(result)
+
+if __name__ == "__main__":
+    StringConcatenationApp().mainloop()
+"""Q.Write a GUI-based program that allows the user to convert amount in Indian 
+Rupees to amount in Euro. The interface should have labeled entry fields for these two values.
+These  components should be arranged in a grid where the labels occupy the first row  and the 
+corresponding fields occupy the second row.At start-up, the Rupees field should contain 0.0,
+and the Euro field should contain  0.0. The third row in the window contains two command 
+buttons, labeled R->E  and E->R. When the user presses the first button, the program should
+use the data  in the Rupee field to compute the amount in Euro, which should then be output
+to the Euro field. The second button should perform the inverse function.  
+"""
+from breezypythongui import EasyFrame
+
+class CurrencyConverter(EasyFrame):
+    def __init__(self):
+        EasyFrame.__init__(self, title="Currency Converter (INR <-> Euro)")
+
+        self.addLabel(text="Indian Rupees (₹)", row=0, column=0)
+        self.addLabel(text="Euros (€)", row=0, column=1)
+
+        self.rupeeField = self.addFloatField(value=0.0, row=1, column=0, width=10)
+        self.euroField = self.addFloatField(value=0.0, row=1, column=1, width=10)
+
+        self.addButton(text="R->E", row=2, column=0, command=self.convert_to_euro)
+        self.addButton(text="E->R", row=2, column=1, command=self.convert_to_rupee)
+
+    def convert_to_euro(self):
+        rupees = self.rupeeField.getNumber()
+        euros = rupees * 0.011 
+        self.euroField.setNumber(round(euros, 2))
+
+    def convert_to_rupee(self):
+        euros = self.euroField.getNumber()
+        rupees = euros * 90  
+        self.rupeeField.setNumber(round(rupees, 2))
+
+if __name__ == "__main__":
+    CurrencyConverter().mainloop()
+"""Q. Write Python GUI program to take the birth date and output the age when a  
+button is pressed.  
+"""
+from breezypythongui import EasyFrame
+from datetime import datetime
+
+class AgeCalculatorApp(EasyFrame):
+    def __init__(self):
+        EasyFrame.__init__(self, title="Age Calculator")
+
+        self.addLabel(text="Enter Birth Date (YYYY-MM-DD):", row=0, column=0)
+        self.birthDateField = self.addTextField(text="", row=0, column=1)
+
+        self.addButton(text="Calculate Age", row=1, column=0, columnspan=2, command=self.calculateAge)
+
+        self.addLabel(text="Your Age:", row=2, column=0)
+        self.resultField = self.addIntegerField(value=0, row=2, column=1, state="readonly")
+
+    def calculateAge(self):
+        birth_date_str = self.birthDateField.getText()
+        try:
+            birth_date = datetime.strptime(birth_date_str, "%Y-%m-%d")
+            today = datetime.today()
+            age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+            self.resultField.setNumber(age)  
+        except ValueError:
+            self.messageBox(title="Error", message="Invalid date format. Please enter YYYY-MM-DD.")
+
+if __name__ == "__main__":
+    AgeCalculatorApp().mainloop()
+
+
+
+
+
+
+
+#How to draw a square and hexagon using turtle module in Python.
+
+from turtle import Turtle
+def drawsquare(t,length):
+    for count in range(4):
+        t.forward(length)
+        t.left(90)
+    t.penup()
+    t.goto(150, 0)  
+    t.pendown()
+
+def hexagon(t,length):
+    for count in range(6):
+        t.forward(length)
+        t.left(60)
+
+t=Turtle()
+drawsquare(t,30)
+hexagon(t,30)
+#How to draw a square and hexagon using turtle module in Python.
+
+
+from turtle import Turtle
+def square(t,length):
+    for count in range(4):
+        t.forward(length)
+        t.left(90)
+
+def hexagon(t,length):
+    for count in range(6):
+        t.forward(length)
+        t.left(60)
+def radial(t,n,length,shape):
+    for i in range(n):
+        shape(t,length)
+        t.left(360/n)
+t=Turtle()
+radial(t,10,30,square)
+radial(t,10,30,hexagon)
+#Write a Python program to draw a hexagon using turtle graphics.
+
+from turtle import Turtle
+def hexagon(t,length):
+    for count in range(6):
+        t.forward(length)
+        t.left(60)
+t=Turtle()
+hexagon(t,30)
+#Write a python function to draw a square using turtle graphics
+from turtle import Turtle
+def drawsquare(t,length):
+    for count in range(4):
+        t.forward(length)
+        t.left(90)
+t=Turtle()
+drawsquare(t,30)
+#Write a Python program to draw a hexagon and to fill it with red colour.
+
+from turtle import Turtle
+
+t = Turtle()
+t.color("red")  
+t.begin_fill()
+
+for _ in range(6):
+    t.forward(100)  
+    t.right(60)     
+
+t.end_fill()  
+#How to draw a star shape using turtle in Python.
+from turtle import Turtle
+
+t = Turtle()
+for i in range(5):
+    t.forward(150)  
+    t.right(144) 
