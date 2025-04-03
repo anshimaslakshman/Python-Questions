@@ -1,0 +1,579 @@
+"""Q. Consider a CSV file employee.csv with the following columns:
+
+name
+
+gender
+
+start_date
+
+salary
+
+team
+
+Write Pandas commands to perform the following tasks:
+
+Print the first 7 records from the employee file.
+
+Print all employee names in alphabetical order.
+
+Find the name of the employee with the highest salary.
+
+List the names of male employees.
+
+List all teams to which employees belong."""
+
+import pandas as pd
+
+df = pd.read_csv("employee.csv")
+
+
+
+print(df.head(7))
+
+
+print(df['name'].sort_values())
+
+highest_paid = df[df['salary'] == df['salary'].max()]
+print(highest_paid['name'].values[0])
+
+male_employees = df[df['gender'] == 'Male']
+print(male_employees['name'])
+
+teams = df['team'].unique()
+print(teams)
+      name  gender  start_date  salary       team
+0     John    Male  2020-01-15   50000         HR
+1    Alice  Female  2019-03-22   60000    Finance
+2      Bob    Male  2021-06-10   45000         IT
+3  Charlie    Male  2018-11-05   70000         IT
+4    David    Male  2020-07-30   65000  Marketing
+5     Emma  Female  2017-09-14   72000         HR
+6    Frank    Male  2022-02-25   48000    Finance
+1      Alice
+2        Bob
+3    Charlie
+4      David
+5       Emma
+6      Frank
+7      Grace
+8      Henry
+9     Isabel
+0       John
+Name: name, dtype: object
+Emma
+0       John
+2        Bob
+3    Charlie
+4      David
+6      Frank
+8      Henry
+Name: name, dtype: object
+['HR' 'Finance' 'IT' 'Marketing']
+"""Q.Write a Python program to write the following data into a CSV file:
+
+| Reg_no | Name | Sub_Mark1 | Sub_Mark2 | Sub_Mark3 |
+|--------|------|-----------|-----------|-----------|
+| 10001  | Jack | 76        | 88        | 76        |
+| 10002  | John | 77        | 84        | 79        |
+| 10003  | Alex | 74        | 79        | 81        |
+"""
+import csv
+
+data = [
+    ["Reg_no", "Name", "Sub_Mark1", "Sub_Mark2", "Sub_Mark3"],
+    [10001, "Jack", 76, 88, 76],
+    [10002, "John", 77, 84, 79],
+    [10003, "Alex", 74, 79, 81]
+]
+
+with open("students.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+print("CSV file 'students.csv' created successfully!")
+CSV file 'students.csv' created successfully!
+"""Consider the followin two-dimensional array named arr2d  (8)
+[[1, 2, 3],  
+[4, 5, 6],  
+[7, 8, 9]]  
+Write the output of following Python Numpy expressions: 1. arr2d[:2]  
+2. arr2d[:2, 1:]  
+3. arr2d[1, :2]  
+4. arr2d[:2, 1:] = 0  
+"""
+import numpy as np
+arr2d = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+print(arr2d[:2] ) 
+print(arr2d[:2, 1:] ) 
+print(arr2d[1, :2]  )
+arr2d[:2, 1:] = 0
+print( arr2d )
+[[1 2 3]
+ [4 5 6]]
+[[2 3]
+ [5 6]]
+[4 5]
+[[1 0 0]
+ [4 0 0]
+ [7 8 9]]
+"""Q. Write Python program to write the following University topper data of CSE  (6)
+branch to a CSV file.  
+"""
+import pandas as pd
+
+data = {
+    "Reg. No": ["ABC123", "ECH265", "FET345", "GMT734"],
+    "Name": ["Ganesh Kumar", "John Mathew", "Reena K", "Adil M"],
+    "Semester": ["S8", "S7", "S6", "S5"],
+    "College": ["ABC", "ECH", "FET", "GMT"],
+    "CGPA": [9.8, 9.9, 9.7, 9.75]
+}
+
+df = pd.DataFrame(data)
+
+df.to_csv("university_toppers.csv", index=False)
+
+print("CSV file 'university_toppers.csv' created successfully!")
+CSV file 'university_toppers.csv' created successfully!
+"""Q.Write a Pandas program to read a CSV file named Diamond.csv with the fields:
+carat, cut, color, clarity, depth, and price and print the following:
+
+Number of rows and columns
+
+First five rows"""
+
+import pandas as pd
+
+# Read the CSV file
+df = pd.read_csv("Diamond.csv")
+
+# 1. Number of rows and columns
+print("Number of rows and columns:", df.shape)
+
+# 2. First five rows
+print(df.head())
+"""Q.Temperature (°C) on different dates is stored in a CSV file named Weather_data.csv with the fields:
+
+date
+
+temperature
+
+humidity
+
+Write a Pandas program to:
+
+Draw a line plot of the weather report with date as the x-axis and temperature as the y-axis.
+
+Draw a scatter plot of the weather report with date as the x-axis and humidity as the y-axis."""
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("Weather_data.csv")
+
+df["date"] = pd.to_datetime(df["date"])
+
+df.plot(x="date", y="temperature", kind="line", marker="o", color="blue", title="Weather Report: Date vs. Temperature")
+
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+
+df.plot(x="date", y="humidity", kind="scatter", color="red", title="Weather Report: Date vs. Humidity")
+
+plt.xlabel("Date")
+plt.ylabel("Humidity (%)")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+
+
+"""Q.  Write a code segment that prints the names of all of the items in the current  (5)
+working directory. """
+
+import os
+items = os.listdir()
+for item in items:
+    print(item)
+code.txt
+employee copy.csv
+employee.csv
+hello.txt
+mod1
+mod2.ipynb
+mod3.ipynb
+mod5.ipynb
+mod5_theory.ipynb
+number.txt
+students.csv
+university_toppers.csv
+weather.csv
+weather_data.csv
+""" write a python program to create two numpy arrays of random integers between 0 and 20 of shape (3, 3) and perform matrix addition, multiplication and transpose of the product matrix.  """
+
+import numpy as np
+
+matrix1 = np.random.randint(0, 21, (3, 3))
+matrix2 = np.random.randint(0, 21, (3, 3))
+
+addition_result = matrix1 + matrix2
+
+multiplication_result = np.dot(matrix1, matrix2)
+
+transpose_result = multiplication_result.T
+
+print("Matrix 1:\n", matrix1)
+print("\nMatrix 2:\n", matrix2)
+print("\nAddition Result:\n", addition_result)
+print("\nMultiplication Result:\n", multiplication_result)
+print("\nTranspose of Product Matrix:\n", transpose_result)
+Matrix 1:
+ [[17 11  8]
+ [11  7 17]
+ [ 8 13 16]]
+
+Matrix 2:
+ [[ 8 20 14]
+ [18 11  0]
+ [ 0  5 19]]
+
+Addition Result:
+ [[25 31 22]
+ [29 18 17]
+ [ 8 18 35]]
+
+Multiplication Result:
+ [[334 501 390]
+ [214 382 477]
+ [298 383 416]]
+
+Transpose of Product Matrix:
+ [[334 214 298]
+ [501 382 383]
+ [390 477 416]]
+"""Q.Write Python program to write the data given below to a CSV file named 
+student.csv 
+fields = ['Name', 'Branch', 'Year', 'CGPA']
+rows = [ ['Nikhil', 'CSE', '2', '8.0'], 
+ ['Sanchit', 'CSE', '2', '9.1'], 
+ ['Aditya', 'IT', '2', '9.3'], 
+ ['Sagar', 'IT', '1', '9.5']] 
+ ['Sagar', 'IT', '1', '9.5']]   """
+
+import pandas as pd  
+data = {
+    'Name': ['Nikhil', 'Sanchit', 'Aditya', 'Sagar'],
+    'Branch': ['CSE', 'CSE', 'IT', 'IT'],
+    'Year': [2, 2, 2, 1],
+    'CGPA': [8.0, 9.1, 9.3, 9.5]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("student.csv", index=False)
+
+print("CSV file 'student.csv' created successfully!")
+CSV file 'student.csv' created successfully!
+"""Consider the above  
+file with fields Name, Branch, Year, CGPA .  
+Write python code using pandas to 
+1) To find the average CGPA of the students 
+2) To display the details of all students having CGPA > 9
+3) To display the details of all CSE students with CGPA > 9
+4) To display the details of student with maximum CGPA
+5) To display average CGPA of each branch 5) To display average CGPA of each branch o display average CGPA of each branch   answer in structured format"""
+
+import pandas as pd
+
+df = pd.read_csv("student.csv")
+
+df['CGPA'] = df['CGPA'].astype(float)
+
+average_cgpa = df['CGPA'].mean()
+print("Average CGPA:", average_cgpa)
+9
+high_cgpa_students = df[df['CGPA'] > 9]
+print("\nStudents with CGPA > 9:\n", high_cgpa_students)
+
+cse_high_cgpa_students = df[(df['Branch'] == 'CSE') & (df['CGPA'] > 9)]
+print("\nCSE Students with CGPA > 9:\n", cse_high_cgpa_students)
+
+max_cgpa_student = df[df['CGPA'] == df['CGPA'].max()]
+print("\nStudent with Maximum CGPA:\n", max_cgpa_student)
+
+average_cgpa_by_branch = df.groupby("Branch")['CGPA'].mean()
+print("\nAverage CGPA by Branch:\n", average_cgpa_by_branch)
+Average CGPA: 8.975000000000001
+
+Students with CGPA > 9:
+       Name Branch  Year  CGPA
+1  Sanchit    CSE     2   9.1
+2   Aditya     IT     2   9.3
+3    Sagar     IT     1   9.5
+
+CSE Students with CGPA > 9:
+       Name Branch  Year  CGPA
+1  Sanchit    CSE     2   9.1
+
+Student with Maximum CGPA:
+     Name Branch  Year  CGPA
+3  Sagar     IT     1   9.5
+
+Average CGPA by Branch:
+ Branch
+CSE    8.55
+IT     9.40
+Name: CGPA, dtype: float64
+"""Q. Consider a CSV file ‘weather.csv’ with the following columns (date,temperature, humidity, windSpeed, precipitationType, place, weather {Rainy,  Cloudy, Sunny}).
+Write commands to do the following using Pandas library. 
+1. Print first 10 rows of weather data. 
+2. Find the maximum and minimum temperature 
+3. List the places with temperature less than 28oC. 
+4. List the places with weather = “Cloudy” 
+5. Sort and display each weather and its frequency 
+6. Create a bar plot to visualize temperature of each day. """
+
+import pandas as pd
+df = pd.read_csv("weather.csv")
+
+print(df.head(10))
+max_temp = df["temperature"].max()
+min_temp = df["temperature"].min()
+
+print(f"Maximum Temperature: {max_temp}")
+print(f"Minimum Temperature: {min_temp}")
+
+places_below_28 = df[df["temperature"] < 28]["place"].unique()
+print("Places with temperature less than 28°C:", places_below_28)
+
+cloudy_places = df[df["weather"] == "Cloudy"]["place"].unique()
+print("Places with Cloudy weather:", cloudy_places)
+
+weather_counts = df["weather"].value_counts()
+print(weather_counts)
+
+import matplotlib.pyplot as plt
+
+# Plot bar chart
+plt.figure(figsize=(10, 5))
+plt.bar(df["date"], df["temperature"], color="blue")
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.title("Temperature Trend Over Time")
+plt.xticks(rotation=45)
+plt.show()
+         date  temperature  humidity  windSpeed precipitationType  \
+0  2025-03-01           30        65         12               NaN   
+1  2025-03-02           28        70         14               NaN   
+2  2025-03-03           25        80         10              Rain   
+3  2025-03-04           32        60          8               NaN   
+4  2025-03-05           26        75         15               NaN   
+5  2025-03-06           27        68         11               NaN   
+6  2025-03-07           22        85          9              Rain   
+7  2025-03-08           29        72         13               NaN   
+8  2025-03-09           31        66         10               NaN   
+9  2025-03-10           24        78         12              Rain   
+
+           place weather  
+0       New York   Sunny  
+1    Los Angeles  Cloudy  
+2        Chicago   Rainy  
+3          Miami   Sunny  
+4        Seattle  Cloudy  
+5         Boston   Sunny  
+6        Houston   Rainy  
+7  San Francisco  Cloudy  
+8      Las Vegas   Sunny  
+9         Denver   Rainy  
+Maximum Temperature: 32
+Minimum Temperature: 22
+Places with temperature less than 28°C: ['Chicago' 'Seattle' 'Boston' 'Houston' 'Denver']
+Places with Cloudy weather: ['Los Angeles' 'Seattle' 'San Francisco']
+weather
+Sunny     4
+Cloudy    3
+Rainy     3
+Name: count, dtype: int64
+
+"""Q.Write Python program to write the data given below to a CSV file."""
+
+import pandas as pd
+
+data = {
+    "Sl No.": [1, 2, 3],
+    "Title": ["The Great Gatsby", "Pride and Prejudice", "The Time Machine"],
+    "Author": ["F. Scott Fitzgerald", "Jane Austen", "H.G. Wells"],
+    "Available": ["Y", "Y", "N"],
+    "Count": [20, 15, 0]
+}
+
+df = pd.DataFrame(data)
+
+df.to_csv("books.csv", index=False)
+
+print("CSV file 'books.csv' created successfully!")
+CSV file 'books.csv' created successfully!
+"""Q.Write a Python program to input two matrices and perform the following  
+operations using numpy and display the results: 
+1. Add the matrices  
+2. Subtract the matrices 
+3. Multiply the matrices 
+4. Find transpose of the matrices   answer in structured format"""
+import numpy as np
+rows, cols = 2, 2
+print("Enter values for Matrix A:")
+A = np.array([[int(input()) for _ in range(cols)] for _ in range(rows)])
+
+print("Enter values for Matrix B:")
+B = np.array([[int(input()) for _ in range(cols)] for _ in range(rows)])
+
+addition = A + B
+print("Matrix Addition:\n", addition)
+
+subtraction = A - B
+print("Matrix Subtraction:\n", subtraction)
+
+multiplication = A @ B  # or np.dot(A, B)
+print("Matrix Multiplication:\n", multiplication)
+
+transpose_A = A.T
+transpose_B = B.T
+print("Transpose of Matrix A:\n", transpose_A)
+print("Transpose of Matrix B:\n", transpose_B)
+"""Q.Write a python program to create two numpy arrays of random integers between  (7) 
+0 and 20 of shape (3, 3) and perform the following operations.  
+1. Perform element-wise addition of two NumPy arrays.  
+2. Calculate the mean and standard deviation of first NumPy array. 
+3. Multiply each element of first NumPy array by a scalar value. 
+4.Compute the dot product of two matrices using NumPy. 
+"""
+import numpy as np
+array1 = np.random.randint(0, 20, (3, 3))
+array2 = np.random.randint(0, 20, (3, 3))
+addition_result = array1 + array2
+
+mean_array1 = np.mean(array1)
+std_dev_array1 = np.std(array1)
+
+scaled_array1 = array1 * 2
+
+dot_product_result = np.dot(array1, array2)
+
+print("Array 1:\n", array1)
+print("Array 2:\n", array2)
+print("Element-wise Addition:\n", addition_result)
+print("Mean of First Array:", mean_array1)
+print("Standard Deviation of First Array:", std_dev_array1)
+print("Scaled Array 1:\n", scaled_array1)
+print("Dot Product of Arrays:\n", dot_product_result)
+Array 1:
+ [[ 5  2  6]
+ [ 8  8 10]
+ [ 6  0 18]]
+Array 2:
+ [[ 6 15  7]
+ [15  5 15]
+ [13  2 19]]
+Element-wise Addition:
+ [[11 17 13]
+ [23 13 25]
+ [19  2 37]]
+Mean of First Array: 7.0
+Standard Deviation of First Array: 4.853406592853679
+Scaled Array 1:
+ [[10  4 12]
+ [16 16 20]
+ [12  0 36]]
+Dot Product of Arrays:
+ [[138  97 179]
+ [298 180 366]
+ [270 126 384]]
+"""Q.Create a Matplotlib plot with two lines representing the functions y=sin(x) for  (7) 
+0≤x≤2π (use a solid line) and y=cos(x) for 0≤x≤2π (use a dashed line).  Customize the plot by adding appropriate ticks, labels for the x and y axes, and a  legend to distinguish between the two functions. 
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2*np.pi, 100)
+
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, y_sin, label="y = sin(x)", linestyle="-")  
+plt.plot(x, y_cos, label="y = cos(x)", linestyle="--") 
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Plot of y = sin(x) and y = cos(x)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+"""Q. Consider a CSV file 'students.csv' with columns such as 'student_id', 'name',  (7) 
+'gender', 'birth_date', and 'grade'. Write commands to do the following using  panda library. 
+1) Display the first 5 records  
+2) Print all student names in ascending alphabetical order 
+3) Print the name of the student with the highest grade 
+4) List the names of male students 
+"""
+import pandas as pd
+
+data = {
+    "student_id": [1, 2, 3, 4, 5],
+    "name": ["Alice", "Bob", "Charlie", "Diana", "Edward"],
+    "gender": ["Female", "Male", "Male", "Female", "Male"],
+    "birth_date": ["2005-04-23", "2004-08-17", "2006-02-10", "2005-11-30", "2003-09-25"],
+    "grade": [85, 90, 78, 88, 92]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("students.csv", index=False)
+
+print("students.csv file created successfully!")
+
+import pandas as pd
+
+df = pd.read_csv('students.csv')
+print(df.head())
+print(df['name'].sort_values().tolist())
+print(df.loc[df['grade'].idxmax(), 'name'])
+print(df[df['gender'] == 'Male']['name'].tolist())
+   student_id     name  gender  birth_date  grade
+0           1    Alice  Female  2005-04-23     85
+1           2      Bob    Male  2004-08-17     90
+2           3  Charlie    Male  2006-02-10     78
+3           4    Diana  Female  2005-11-30     88
+4           5   Edward    Male  2003-09-25     92
+['Alice', 'Bob', 'Charlie', 'Diana', 'Edward']
+Edward
+['Bob', 'Charlie', 'Edward']
+"""Q.Write Python program to write the data given below to a CSV file (7) 
+"""
+import pandas as pd
+data = {
+    "Name": ["Ram Roy", "Jack Tom", "Susan Jit", "Jit Joy"],
+    "Age": [35, 50, 33, 40],
+    "City": ["Mumbai", "Delhi", "Chennai", "Kolkata"],
+    "Occupation": ["Teacher", "Doctor", "Engineer", "Architect"],
+    "Salary": [75000, 90000, 85000, 70000]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("people_data.csv", index=False)
+print("Data has been written to people_data.csv successfully!")
+Data has been written to people_data.csv successfully!
+"""Q.Write a python program to create a 3x3 matrix named A with random integer 
+values between 1 and 10. """
+import numpy as np
+
+A = np.random.randint(1, 11, size=(3, 3))
+print("Matrix A:\n", A)
+Matrix A:
+ [[ 7 10  2]
+ [ 1  5  6]
+ [ 1  9  5]]
