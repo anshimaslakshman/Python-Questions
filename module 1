@@ -1,0 +1,367 @@
+Jan 2024
+
+
+"""Write a program that accepts the lengths of three sides of a triangle as inputs and
+outputs whether or not the triangle is a right triangle."""
+
+base=int(input("enter the base: "))
+height=int(input("enter the height: "))
+hypotenus=int(input("enter the hypotenus: "))
+
+if (base**2)+(height**2)==(hypotenus**2):
+    print("the triangle is a right angled triangle.")
+else:
+        print("the triangle is not a right angled triangle.")
+
+
+"""
+O/P:
+enter the base: 3
+enter the height: 4
+enter the hypotenus: 5
+the triangle is a right angled triangle.
+
+"""
+
+
+
+"""Assume that the variable data refers to the string "python rules!". use a string method to perform the following tasks
+a)obtain a list of the words in the string
+b)convert the string to uppercase
+c)locate the position of the string "rule" """
+
+s="python rules!"
+#a)
+s1=s.split()
+print(s1)
+print()
+
+#b)
+print(s.upper())
+print()
+
+#c)
+print(s.find("rule"))
+
+
+
+"""Write a Python program to print all numbers between 100 and 1000 whose sum
+of digits is divisible by 9."""
+
+for i in range(100,1000):
+    d_sum=0
+    for j in str(i):
+        d_sum+=int(j)
+    if d_sum % 9==0:
+        print(i,end=" ")
+
+"""O/p:
+108 117 126 135 144 153 162 171 180 189 198 207 216 225 234 243 252 261 270 279
+288 297 306 315 324 333 342 351 360 369 378 387 396 405 414 423 432 441 450 459 
+468 477 486 495 504 513 522 531 540 549 558 567 576 585 594 603 612 621 630 639 
+648 657 666 675 684 693 702 711 720 729 738 747 756 765 774 783 792 801 810 819 
+828 837 846 855 864 873 882 891 900 909 918 927 936 945 954 963 972 981 990 999
+"""
+
+
+
+June 2022
+
+
+
+#Question: Write a Python program to find distance between two points (x1,y1) and (x2,y2).
+
+import math
+x1=int(input("Enter the x1 Coordinates : "))
+y1=int(input("Enter the y1 Coordinates : "))
+x2=int(input("Enter the x2 Coordinates : "))
+y2=int(input("Enter the y2 Coordinates : "))
+
+dX = x2-x1
+dY = y2-y1
+distance = math.sqrt(dX**2 + dY**2)
+print(f"Distance between ({x1},{y1}) and ({x2},{y2}): {distance}")
+
+"""
+O/P:
+Enter the x1 Coordinates : 6
+Enter the y1 Coordinates : 4
+Enter the x2 Coordinates : 5
+Enter the y2 Coordinates : 2
+Distance between (6,4) and (5,2): 2.23606797749979
+"""
+[03/04, 9:44 am] .: """Write a python program to generate the following type of pattern for the given N rows .
+1
+1 2
+1 2 3
+1 2 3 4"""
+
+n = int(input("Enter the number of rows: "))
+for i in range(1, n+1):
+    for j in range(1, i+1):
+        print(j , end = " ")
+    print(" ")
+
+"""
+O/P:
+Enter the number of rows: 5
+1  
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+"""
+
+
+
+
+June 2023
+
+
+
+"""Write a python program to generate the following type of pattern for the given Nrows where N <= 26.
+A
+A B
+A B C D
+A B C D E"""
+
+N = int(input("Enter the number of rows : "))
+
+
+if N <=26:
+    for i in range(1, N + 1):
+        for j in range(i):
+            print(chr(65 + j), end=" ")
+        print()  
+
+"""
+O/P:
+Enter the number of rows : 5
+A 
+A B
+A B C
+A B C D
+A B C D E
+
+"""
+
+
+
+#Write a python program to generate prime numbers within a certain range
+
+a=int(input("enter the starting number: "))
+b=int(input("enter the ending number: "))
+print(f"prime numbers between {a} and {b} are ")
+for i in range (a,b+1):
+    if i>1:
+        is_prime =True
+        for j in range (2,int(i**0.5)+1):
+            if i %j ==0:
+                is_prime =False
+                break
+        if is_prime:
+            print(i,end=" ")
+
+"""
+O/P:
+enter the starting number: 10
+enter the ending number: 30
+prime numbers between 10 and 30 are 
+11 13 17 19 23 29
+"""
+
+
+#  Write a python program to find X^Y or pow(X,Y) without using standard function
+x = float(input("Enter the base (X): "))
+y = int(input("Enter the exponent (Y): "))
+result = 1
+is_negative_exponent = y < 0  
+y = abs(y) 
+
+for _ in range(y):
+    result *= x
+if is_negative_exponent:
+    result = 1 / result
+
+print(f"{x}^{y} = {result}")
+
+"""
+O/P:
+Enter the base (X): 5
+Enter the exponent (Y): -4
+5.0^4 = 0.0016
+
+"""
+[03/04, 9:46 am] .: May 2023
+
+
+
+"""Write a Python program to check whether a number is Armstrong number or not.
+ An Armstrong number is an n-digit number that is equal to the sum of the nth powers of its digits."""
+
+n = int(input("Enter the Number: "))
+temp=n
+pow= 0
+while temp > 0:
+    pow += 1
+    temp = temp//10
+temp = n
+result = 0
+
+while temp > 0:
+    digit = temp%10
+    result += digit**pow
+    temp = temp//10
+
+if result== n:
+    print(f"{n} is an amstrong number")
+else:
+    print(f"{n} is not an amstrong number")
+
+"""
+O/P:
+Enter the Number: 153
+153 is an amstrong number
+
+"""
+
+
+
+#Write a Python program to find the roots of a quadratic equation, ax^2 + bx + c = 0 . Consider the cases of both real and imaginary roots.
+
+import cmath  
+a = float(input("Enter the coefficient a: "))
+b = float(input("Enter the coefficient b: "))
+c = float(input("Enter the coefficient c: "))
+
+if a == 0:
+    print("The value of 'a' cannot be zero for a quadratic equation.")
+else:
+    discriminant = b**2 - 4*a*c
+    root1 = (-b + cmath.sqrt(discriminant)) / (2 * a)
+    root2 = (-b - cmath.sqrt(discriminant)) / (2 * a)
+    print(f"The roots of the equation are: {root1} and {root2}")
+    if discriminant > 0:
+        print("The equation has two distinct real roots.")
+    elif discriminant == 0:
+        print("The equation has two equal real roots.")
+    else:
+        print("The equation has two complex roots.")
+"""
+O/P:
+Enter the coefficient a: 1
+Enter the coefficient b: -3
+Enter the coefficient c: 2
+The roots of the equation are: (2+0j) and (1+0j)
+The equation has two distinct real roots.
+
+"""
+
+
+
+
+#Write a Python program to display the sum of odd numbers between a programmer specified upper and lower limit.
+
+lower=int(input("Enter the lower limit: "))
+upper=int(input("Enter the upper limit: "))
+sum=0
+for i in range (lower,upper+1):
+    if i % 2 !=0:
+        sum+=i
+print(f"sum of odd numbers between {lower} and {upper} is {sum}")
+
+"""
+O/P:
+Enter the lower limit: 3
+Enter the upper limit: 9
+sum of odd numbers between 3 and 9 is 24
+
+"""
+
+
+
+
+May 2024
+
+
+#Write a python program to print factorial of a given number.
+
+n=int(input("enter the number: "))
+fact=1
+for i in range (1,n+1):
+    fact*=i
+print(f"factorial of {n}={fact}")
+
+"""
+O/P:
+enter the number: 6
+factorial of 6=720
+
+"""
+
+
+"""Write a python program to find out the eldest and youngest of three individuals ,
+with their ages being input through the keyboard.(without using max, min functions)"""
+
+a1=int(input("enter the age of individual 1: "))
+a2=int(input("enter the age of individual 2: "))
+a3=int(input("enter the age of individual 3: "))
+
+if a1>a2 and a1>a3 :
+    print(f"Individual 1 is eldest.")
+elif a2>a1 and a2>a3:
+    print(f"Individual 2 is eldest.")
+else:
+    print(f"Individual 3 is eldest.") 
+
+if a1<a2 and a1<a3 :
+    print(f"Individual 1 is youngest.")
+elif a2<a1 and a2<a3:
+    print(f"Individual 2 is youngest.")
+else:
+    print(f"Individual 3 is youngest.") 
+
+"""
+O/P:
+enter the age of individual 1: 45
+enter the age of individual 2: 65
+enter the age of individual 3: 32
+Individual 2 is eldest.
+Individual 3 is youngest.
+
+"""
+
+
+
+"""Consider the mathematical expression (a+b)^2=(a^2+2ab+b^2). Write a Python
+program that takes user input for values of a and b, then evaluates both sides of
+the expression. Finally, compare the results and print whether the equation holds
+true or false."""
+
+a = int(input("Enter the value of a: "))
+b = int(input("Enter the value of b: "))
+LHS = (a + b) ** 2
+RHS = a ** 2 + 2 * a * b + b ** 2
+
+# Comparing both sides and printing the result
+if LHS == RHS:
+    print("The equation is true.")
+else:
+    print("The equation is not true.")
+
+"""
+O/P:
+Enter the value of a: 1
+Enter the value of b: 2
+The equation is true.
+"""
+
+#write python prgm to create a list of squares for the number 0 to 9 using list comprehensive
+
+s=[i**2 for i in range(10)]
+print(s)
+
+"""
+O/P:[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+"""
